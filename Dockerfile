@@ -1,5 +1,4 @@
-ARG DISTRO="jessie"
-ARG TAG="latest"
+ARG PHP_VERSION="7.3"
 
 FROM debian:buster-slim
 
@@ -8,7 +7,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN set -x \
     && apt-get update \
     && apt-get -y upgrade \
-    && apt-get install -y apache2 curl bash-completion php7.3 php-pdo-mysql nano composer php7.3-xml php7.3-mysql php7.3-gd php7.3-gmagick;
+    && apt-get install -y apache2 curl bash-completion php${PHP_VERSION} php-pdo-mysql nano composer php${PHP_VERSION}-xml php${PHP_VERSION}-mysql php${PHP_VERSION}-gd php${PHP_VERSION}-gmagick;
 
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
@@ -19,7 +18,7 @@ RUN set -x \
 	&& composer create-project neos/neos-base-distribution /var/www/html/neos \
 	&& chown -R www-data: /var/www/html;
 
-COPY php.ini /etc/php/7.3/apache2/php.ini
+#COPY php.ini /etc/php/${PHP_VERSION}/apache2/php.ini
 
 EXPOSE 80
 EXPOSE 443
