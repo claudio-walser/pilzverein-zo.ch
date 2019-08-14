@@ -1,6 +1,5 @@
-ARG PHP_VERSION="7.3"
-
 FROM debian:buster-slim
+ARG PHP_VERSION="7.3"
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -15,7 +14,8 @@ RUN set -x \
     && a2enmod rewrite;
 
 RUN set -x \
-	&& composer create-project neos/neos-base-distribution /var/www/html/neos \
+    && mkdir -p /var/www/html/neos \
+	&& composer create-project neos/neos-base-distribution /var/www/html/neos-orig \
 	&& chown -R www-data: /var/www/html;
 
 #COPY php.ini /etc/php/${PHP_VERSION}/apache2/php.ini
