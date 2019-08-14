@@ -1,0 +1,4 @@
+return function(\Neos\Flow\Aop\JoinPointInterface $joinPoint, $objectManager) {
+    $currentObject = $joinPoint->getProxy();
+    return (\Neos\Utility\ObjectAccess::getPropertyPath($joinPoint->getMethodArgument('workspace'), 'owner') === null);
+};

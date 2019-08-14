@@ -1,0 +1,118 @@
+Exception in line 169 of /var/www/html/neos/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php: An exception occurred in driver: SQLSTATE[HY000] [2002] No such file or directory
+
+28 Doctrine\DBAL\Driver\AbstractMySQLDriver::convertException("An exception occurred in driver: SQLSTATE[HY000] [2002] No such file or directory", Doctrine\DBAL\Driver\PDOException)
+27 Doctrine\DBAL\DBALException::wrapException(Doctrine\DBAL\Driver\PDOMySql\Driver, Doctrine\DBAL\Driver\PDOException, "An exception occurred in driver: SQLSTATE[HY000] [2002] No such file or directory")
+26 Doctrine\DBAL\DBALException::driverException(Doctrine\DBAL\Driver\PDOMySql\Driver, Doctrine\DBAL\Driver\PDOException)
+25 Doctrine\DBAL\Driver\PDOMySql\Driver::connect(array|7|, NULL, NULL, array|0|)
+24 Doctrine\DBAL\Connection::connect()
+23 Doctrine\DBAL\Connection::ping()
+22 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+21 Neos\RedirectHandler\NeosAdapter\Service\NodeRedirectService_Original::createPendingRedirects("Neos\Flow\Persistence\Doctrine\PersistenceManager::allObjectsPersisted")
+20 call_user_func_array(array|2|, array|1|)
+19 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Persistence\Doctrine\PersistenceManager", "allObjectsPersisted", array|0|)
+18 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+17 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+16 Neos\Flow\Persistence\Doctrine\PersistenceManager::emitAllObjectsPersisted()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll(true)
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|3|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+5 Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Setup\Core\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #2002 in line 22 of /var/www/html/neos/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php: SQLSTATE[HY000] [2002] No such file or directory
+
+26 Doctrine\DBAL\Driver\PDOConnection::__construct("mysql:charset=utf8mb4;", NULL, NULL, array|0|)
+25 Doctrine\DBAL\Driver\PDOMySql\Driver::connect(array|7|, NULL, NULL, array|0|)
+24 Doctrine\DBAL\Connection::connect()
+23 Doctrine\DBAL\Connection::ping()
+22 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+21 Neos\RedirectHandler\NeosAdapter\Service\NodeRedirectService_Original::createPendingRedirects("Neos\Flow\Persistence\Doctrine\PersistenceManager::allObjectsPersisted")
+20 call_user_func_array(array|2|, array|1|)
+19 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Persistence\Doctrine\PersistenceManager", "allObjectsPersisted", array|0|)
+18 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+17 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+16 Neos\Flow\Persistence\Doctrine\PersistenceManager::emitAllObjectsPersisted()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll(true)
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|3|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+5 Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Setup\Core\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #2002 in line 27 of /var/www/html/neos/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php: SQLSTATE[HY000] [2002] No such file or directory
+
+27 PDO::__construct("mysql:charset=utf8mb4;", NULL, NULL, array|0|)
+26 Doctrine\DBAL\Driver\PDOConnection::__construct("mysql:charset=utf8mb4;", NULL, NULL, array|0|)
+25 Doctrine\DBAL\Driver\PDOMySql\Driver::connect(array|7|, NULL, NULL, array|0|)
+24 Doctrine\DBAL\Connection::connect()
+23 Doctrine\DBAL\Connection::ping()
+22 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+21 Neos\RedirectHandler\NeosAdapter\Service\NodeRedirectService_Original::createPendingRedirects("Neos\Flow\Persistence\Doctrine\PersistenceManager::allObjectsPersisted")
+20 call_user_func_array(array|2|, array|1|)
+19 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Persistence\Doctrine\PersistenceManager", "allObjectsPersisted", array|0|)
+18 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+17 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+16 Neos\Flow\Persistence\Doctrine\PersistenceManager::emitAllObjectsPersisted()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll(true)
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|3|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse, Neos\Setup\ViewHelpers\Widget\Controller\DatabaseSelectorController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Mvc\ActionResponse)
+5 Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Setup\Core\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /setup/index?%40action=checkConnection&__widgetContext=Tzo0MzoiTmVvc1xGbHVpZEFkYXB0b3JcQ29yZVxXaWRnZXRcV2lkZ2V0Q29udGV4dCI6NDp7czoxOToiACoAd2lkZ2V0SWRlbnRpZmllciI7czo1NjoibmVvcy1zZXR1cC12aWV3aGVscGVycy13aWRnZXQtZGF0YWJhc2VzZWxlY3RvcnZpZXdoZWxwZXIiO3M6MjM6IgAqAGFqYXhXaWRnZXRJZGVudGlmaWVyIjtOO3M6MjY6IgAqAGFqYXhXaWRnZXRDb25maWd1cmF0aW9uIjthOjk6e3M6ODoid2lkZ2V0SWQiO047czoyMToiZHJpdmVyRHJvcGRvd25GaWVsZElkIjtzOjE5OiJkYXRhYmFzZVN0ZXAtZHJpdmVyIjtzOjExOiJ1c2VyRmllbGRJZCI7czoxNzoiZGF0YWJhc2VTdGVwLXVzZXIiO3M6MTU6InBhc3N3b3JkRmllbGRJZCI7czoyMToiZGF0YWJhc2VTdGVwLXBhc3N3b3JkIjtzOjExOiJob3N0RmllbGRJZCI7czoxNzoiZGF0YWJhc2VTdGVwLWhvc3QiO3M6MTc6ImRiTmFtZVRleHRGaWVsZElkIjtzOjE5OiJkYXRhYmFzZVN0ZXAtZGJuYW1lIjtzOjIxOiJkYk5hbWVEcm9wZG93bkZpZWxkSWQiO3M6Mjg6ImRhdGFiYXNlU3RlcC1kYm5hbWUtZHJvcGRvd24iO3M6MTc6InN0YXR1c0NvbnRhaW5lcklkIjtzOjI2OiJkYXRhYmFzZVN0ZXAtZGJuYW1lLXN0YXR1cyI7czoyNToibWV0YWRhdGFTdGF0dXNDb250YWluZXJJZCI7czozNToiZGF0YWJhc2VTdGVwLWRibmFtZS1tZXRhZGF0YS1zdGF0dXMiO31zOjIzOiIAKgBjb250cm9sbGVyT2JqZWN0TmFtZSI7czo2NzoiTmVvc1xTZXR1cFxWaWV3SGVscGVyc1xXaWRnZXRcQ29udHJvbGxlclxEYXRhYmFzZVNlbGVjdG9yQ29udHJvbGxlciI7fQ%3D%3Db6c9be11e2fefc7aa88078e57e9f767777f83037&driver=pdo_mysql&user=root&password=my-secret-pw&host=neos-db&_=1565765431502 HTTP/1.1
+Host: localhost
+Connection: keep-alive
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+Referer: http://localhost/setup/index?step=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 14979268
+PID: 19
+UID: 33
+GID: 33
+User: www-data
+
+    [array] => 
+        previousException:
+        [string] => Exception #2002 in line 22 of /var/www/html/neos/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php: SQLSTATE[HY000] [2002] No such file or directory
+

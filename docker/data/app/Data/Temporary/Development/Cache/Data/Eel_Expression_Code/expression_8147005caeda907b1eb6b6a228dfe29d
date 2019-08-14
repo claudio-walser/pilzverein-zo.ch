@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('Json')->callAndWrap('stringify', array($context->getAndWrap('value')));};

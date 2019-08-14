@@ -1,0 +1,208 @@
+<?php 
+namespace Neos\Media\Domain\Repository;
+
+/*
+ * This file is part of the Neos.Media package.
+ *
+ * (c) Contributors of the Neos Project - www.neos.io
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
+
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Internal\Hydration\IterableResult;
+use Doctrine\ORM\QueryBuilder;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Repository;
+use Neos\Media\Domain\Model\AssetInterface;
+use Neos\Media\Domain\Model\ThumbnailConfiguration;
+
+/**
+ * A repository for Thumbnails
+ *
+ * Note that this repository is not part of the public API. Use the asset's getThumbnail() method instead.
+ *
+ * @Flow\Scope("singleton")
+ */
+class ThumbnailRepository_Original extends Repository
+{
+    /**
+     * @Flow\Inject
+     * @var EntityManagerInterface
+     */
+    protected $entityManager;
+
+    /**
+     * Iterate over an IterableResult and return a Generator
+     *
+     * This method is useful for batch processing huge result set as it clears the object
+     * manager and detaches the current object on each iteration.
+     *
+     * @param IterableResult $iterator
+     * @param callable $callback
+     * @return \Generator
+     */
+    public function iterate(IterableResult $iterator, callable $callback = null)
+    {
+        $iteration = 0;
+        foreach ($iterator as $object) {
+            $object = current($object);
+            yield $object;
+            if ($callback !== null) {
+                call_user_func($callback, $iteration, $object);
+            }
+            $iteration++;
+        }
+    }
+
+    /**
+     * Find all objects and return an IterableResult
+     *
+     * @param string $configurationHash Optional filtering by configuration hash (preset)
+     * @return IterableResult
+     */
+    public function findAllIterator($configurationHash = null)
+    {
+        /** @var QueryBuilder $queryBuilder */
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('t')
+            ->from($this->getEntityClassName(), 't');
+        if ($configurationHash !== null) {
+            $queryBuilder
+                ->where('t.configurationHash = :configurationHash')
+                ->setParameter('configurationHash', $configurationHash);
+        }
+        return $queryBuilder->getQuery()->iterate();
+    }
+
+    /**
+     * Find ungenerated objects and return an IterableResult
+     *
+     * @return IterableResult
+     */
+    public function findUngeneratedIterator()
+    {
+        /** @var QueryBuilder $queryBuilder */
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('t')
+            ->from($this->getEntityClassName(), 't')
+            ->where('t.resource IS NULL AND t.staticResource IS NULL');
+        return $queryBuilder->getQuery()->iterate();
+    }
+
+    /**
+     * Count ungenerated objects
+     *
+     * @return integer
+     */
+    public function countUngenerated()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->logicalAnd($query->equals('resource', null), $query->equals('staticResource', null)));
+        return $query->count();
+    }
+
+    /**
+     * Returns a thumbnail of the given asset with the specified dimensions.
+     *
+     * @param AssetInterface $asset The asset to render a thumbnail for
+     * @param ThumbnailConfiguration $configuration
+     * @return \Neos\Media\Domain\Model\Thumbnail The thumbnail or NULL
+     */
+    public function findOneByAssetAndThumbnailConfiguration(AssetInterface $asset, ThumbnailConfiguration $configuration)
+    {
+        /**
+         * @var $query \Doctrine\ORM\Query
+         */
+        $query = $this->entityManager->createQuery('SELECT t FROM Neos\Media\Domain\Model\Thumbnail t WHERE t.originalAsset = :originalAsset AND t.configurationHash = :configurationHash');
+        $query->setParameter('originalAsset', $this->persistenceManager->getIdentifierByObject($asset));
+        $query->setParameter('configurationHash', $configuration->getHash());
+
+        $query->setMaxResults(1);
+        $result = $query->getOneOrNullResult();
+
+        return $result;
+    }
+}
+
+#
+# Start of Flow generated Proxy code
+#
+namespace Neos\Media\Domain\Repository;
+
+use Doctrine\ORM\Mapping as ORM;
+use Neos\Flow\Annotations as Flow;
+
+/**
+ * A repository for Thumbnails
+ * 
+ * Note that this repository is not part of the public API. Use the asset's getThumbnail() method instead.
+ * @\Neos\Flow\Annotations\Scope("singleton")
+ */
+class ThumbnailRepository extends ThumbnailRepository_Original implements \Neos\Flow\ObjectManagement\Proxy\ProxyInterface {
+
+    use \Neos\Flow\ObjectManagement\Proxy\ObjectSerializationTrait, \Neos\Flow\ObjectManagement\DependencyInjection\PropertyInjectionTrait;
+
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __construct()
+    {
+        if (get_class($this) === 'Neos\Media\Domain\Repository\ThumbnailRepository') \Neos\Flow\Core\Bootstrap::$staticObjectManager->setInstance('Neos\Media\Domain\Repository\ThumbnailRepository', $this);
+        parent::__construct();
+        if ('Neos\Media\Domain\Repository\ThumbnailRepository' === get_class($this)) {
+            $this->Flow_Proxy_injectProperties();
+        }
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __sleep()
+    {
+            $result = NULL;
+        $this->Flow_Object_PropertiesToSerialize = array();
+
+        $transientProperties = array (
+);
+        $propertyVarTags = array (
+  'entityManager' => 'Doctrine\\ORM\\EntityManagerInterface',
+  'persistenceManager' => 'Neos\\Flow\\Persistence\\PersistenceManagerInterface',
+  'entityClassName' => 'string',
+  'defaultOrderings' => 'array',
+);
+        $result = $this->Flow_serializeRelatedEntities($transientProperties, $propertyVarTags);
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __wakeup()
+    {
+        if (get_class($this) === 'Neos\Media\Domain\Repository\ThumbnailRepository') \Neos\Flow\Core\Bootstrap::$staticObjectManager->setInstance('Neos\Media\Domain\Repository\ThumbnailRepository', $this);
+
+        $this->Flow_setRelatedEntities();
+        $this->Flow_Proxy_injectProperties();
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    private function Flow_Proxy_injectProperties()
+    {
+        $this->Flow_Proxy_LazyPropertyInjection('Doctrine\ORM\EntityManagerInterface', 'Doctrine\ORM\EntityManagerInterface', 'entityManager', '68dcc38bb5d1acad752c62baff04cd05', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Doctrine\ORM\EntityManagerInterface'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Persistence\PersistenceManagerInterface', 'Neos\Flow\Persistence\Doctrine\PersistenceManager', 'persistenceManager', '8a72b773ea2cb98c2933df44c659da06', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Persistence\PersistenceManagerInterface'); });
+        $this->Flow_Injected_Properties = array (
+  0 => 'entityManager',
+  1 => 'persistenceManager',
+);
+    }
+}
+# PathAndFilename: /var/www/html/neos/Packages/Application/Neos.Media/Classes/Domain/Repository/ThumbnailRepository.php
+#

@@ -1,0 +1,1 @@
+return function ($context) {return $context->callAndWrap('q', array($context->getAndWrap('site')))->callAndWrap('property', array('_contextPath'));};

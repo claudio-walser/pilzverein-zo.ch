@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('Neos')->getAndWrap('Ui')->getAndWrap('PositionalArraySorter')->callAndWrap('sort', array($context->getAndWrap('Configuration')->callAndWrap('setting', array('Neos.Neos.nodeTypes.groups'))));};

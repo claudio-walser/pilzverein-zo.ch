@@ -1,0 +1,1 @@
+return function ($context) {return ((($_0=$context->getAndWrap('request')->getAndWrap('format')) instanceof \Neos\Eel\Context?$_0->unwrap():$_0))!==((($_1='html') instanceof \Neos\Eel\Context?$_1->unwrap():$_1));};

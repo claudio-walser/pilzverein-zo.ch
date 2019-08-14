@@ -1,0 +1,1 @@
+return function ($context) {return $context->callAndWrap('q', array($context->getAndWrap('user')))->callAndWrap('property', array('name.title'));};

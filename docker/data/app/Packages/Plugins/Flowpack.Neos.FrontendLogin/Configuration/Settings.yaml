@@ -1,0 +1,32 @@
+Neos:
+  Flow:
+    security:
+      authentication:
+        providers:
+          'Neos.Neos:Backend':
+            requestPatterns:
+              'Flowpack.Neos.FrontendLogin:NeosBackend':
+                pattern: Flowpack\Neos\FrontendLogin\Security\NeosRequestPattern
+          'Flowpack.Neos.FrontendLogin:Frontend':
+            provider: PersistedUsernamePasswordProvider
+            requestPatterns:
+              'Flowpack.Neos.FrontendLogin:NeosFrontend':
+                pattern: Flowpack\Neos\FrontendLogin\Security\NeosRequestPattern
+                patternOptions:
+                  matchFrontend: true
+  Neos:
+    userInterface:
+      translation:
+        autoInclude:
+          Flowpack.Neos.FrontendLogin:
+            - 'NodeTypes/*'
+    fusion:
+      autoInclude:
+        Flowpack.Neos.FrontendLogin: true
+
+Flowpack:
+  Neos:
+    FrontendLogin:
+      translation:
+        packageKey: 'Flowpack.Neos.FrontendLogin'
+        sourceName: 'Main'

@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('Neos')->getAndWrap('Ui')->getAndWrap('NodeInfo')->callAndWrap('uri', array($context->getAndWrap('documentNode'),$context->getAndWrap('controllerContext')));};

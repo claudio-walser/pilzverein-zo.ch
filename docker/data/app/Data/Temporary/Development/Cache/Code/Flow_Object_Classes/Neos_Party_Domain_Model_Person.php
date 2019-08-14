@@ -1,0 +1,333 @@
+<?php 
+namespace Neos\Party\Domain\Model;
+
+/*
+ * This file is part of the Neos.Party package.
+ *
+ * (c) Contributors of the Neos Project - www.neos.io
+ *
+ * This package is Open Source Software. For the full copyright and license
+ * information, please view the LICENSE file which was distributed with this
+ * source code.
+ */
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Neos\Flow\Annotations as Flow;
+
+/**
+ * A person
+ *
+ * @Flow\Entity
+ */
+class Person_Original extends AbstractParty
+{
+    /**
+     * @var PersonName
+     * @ORM\OneToOne
+     * @Flow\Validate(type="NotEmpty")
+     */
+    protected $name;
+
+    /**
+     * @var Collection<\Neos\Party\Domain\Model\ElectronicAddress>
+     * @ORM\ManyToMany
+     */
+    protected $electronicAddresses;
+
+    /**
+     * @var ElectronicAddress
+     * @ORM\ManyToOne
+     */
+    protected $primaryElectronicAddress;
+
+    /**
+     * Constructs this Person
+     *
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->electronicAddresses = new ArrayCollection();
+    }
+
+    /**
+     * Sets the current name of this person
+     *
+     * @param PersonName $name Name of this person
+     * @return void
+     */
+    public function setName(PersonName $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Returns the current name of this person
+     *
+     * @return PersonName Name of this person
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Adds the given electronic address to this person.
+     *
+     * @param ElectronicAddress $electronicAddress The electronic address
+     * @return void
+     */
+    public function addElectronicAddress(ElectronicAddress $electronicAddress)
+    {
+        $this->electronicAddresses->add($electronicAddress);
+    }
+
+    /**
+     * Removes the given electronic address from this person.
+     *
+     * @param ElectronicAddress $electronicAddress The electronic address
+     * @return void
+     */
+    public function removeElectronicAddress(ElectronicAddress $electronicAddress)
+    {
+        $this->electronicAddresses->removeElement($electronicAddress);
+        if ($electronicAddress === $this->primaryElectronicAddress) {
+            $this->primaryElectronicAddress = null;
+        }
+    }
+
+    /**
+     * Sets the electronic addresses of this person.
+     *
+     * @param \Doctrine\Common\Collections\Collection<\Neos\Party\Domain\Model\ElectronicAddress> $electronicAddresses
+     * @return void
+     */
+    public function setElectronicAddresses(Collection $electronicAddresses)
+    {
+        if ($this->primaryElectronicAddress !== null && !$this->electronicAddresses->contains($this->primaryElectronicAddress)) {
+            $this->primaryElectronicAddress = null;
+        }
+        $this->electronicAddresses = $electronicAddresses;
+    }
+
+    /**
+     * Returns all known electronic addresses of this person.
+     *
+     * @return Collection<\Neos\Party\Domain\Model\ElectronicAddress>
+     */
+    public function getElectronicAddresses()
+    {
+        return clone $this->electronicAddresses;
+    }
+
+    /**
+     * Sets (and adds if necessary) the primary electronic address of this person.
+     *
+     * @param ElectronicAddress $electronicAddress The electronic address
+     * @return void
+     */
+    public function setPrimaryElectronicAddress(ElectronicAddress $electronicAddress)
+    {
+        $this->primaryElectronicAddress = $electronicAddress;
+        if (!$this->electronicAddresses->contains($electronicAddress)) {
+            $this->electronicAddresses->add($electronicAddress);
+        }
+    }
+
+    /**
+     * Returns the primary electronic address, if one has been defined.
+     *
+     * @return ElectronicAddress The primary electronic address or NULL
+     */
+    public function getPrimaryElectronicAddress()
+    {
+        return $this->primaryElectronicAddress;
+    }
+}
+
+#
+# Start of Flow generated Proxy code
+#
+namespace Neos\Party\Domain\Model;
+
+use Doctrine\ORM\Mapping as ORM;
+use Neos\Flow\Annotations as Flow;
+
+/**
+ * A person
+ * @\Neos\Flow\Annotations\Entity
+ * @\Neos\Flow\Annotations\Entity
+ */
+class Person extends Person_Original implements \Neos\Flow\ObjectManagement\Proxy\ProxyInterface, \Neos\Flow\Persistence\Aspect\PersistenceMagicInterface {
+
+    use \Neos\Flow\Aop\AdvicesTrait, \Neos\Flow\ObjectManagement\Proxy\ObjectSerializationTrait;
+
+    /**
+     * @var string
+     * @ORM\Id
+     * @ORM\Column(length=40)
+     * introduced by Neos\Flow\Persistence\Aspect\PersistenceMagicAspect
+     */
+    protected $Persistence_Object_Identifier = NULL;
+
+    private $Flow_Aop_Proxy_targetMethodsAndGroupedAdvices = array();
+
+    private $Flow_Aop_Proxy_groupedAdviceChains = array();
+
+    private $Flow_Aop_Proxy_methodIsInAdviceMode = array();
+
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __construct()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct'])) {
+        parent::__construct();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct'] = true;
+            try {
+            
+                $methodArguments = [];
+
+                if (isset($this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__construct']['Neos\Flow\Aop\Advice\BeforeAdvice'])) {
+                    $advices = $this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__construct']['Neos\Flow\Aop\Advice\BeforeAdvice'];
+                    $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'Neos\Party\Domain\Model\Person', '__construct', $methodArguments);
+                    foreach ($advices as $advice) {
+                        $advice->invoke($joinPoint);
+                    }
+
+                    $methodArguments = $joinPoint->getMethodArguments();
+                }
+
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'Neos\Party\Domain\Model\Person', '__construct', $methodArguments);
+                $result = $this->Flow_Aop_Proxy_invokeJoinPoint($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct']);
+            return;
+        }
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    protected function Flow_Aop_Proxy_buildMethodsAndAdvicesArray()
+    {
+        if (method_exists(get_parent_class(), 'Flow_Aop_Proxy_buildMethodsAndAdvicesArray') && is_callable('parent::Flow_Aop_Proxy_buildMethodsAndAdvicesArray')) parent::Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        $objectManager = \Neos\Flow\Core\Bootstrap::$staticObjectManager;
+        $this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices = array(
+            '__clone' => array(
+                'Neos\Flow\Aop\Advice\BeforeAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\BeforeAdvice('Neos\Flow\Persistence\Aspect\PersistenceMagicAspect', 'generateUuid', $objectManager, NULL),
+                ),
+                'Neos\Flow\Aop\Advice\AfterReturningAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AfterReturningAdvice('Neos\Flow\Persistence\Aspect\PersistenceMagicAspect', 'cloneObject', $objectManager, NULL),
+                ),
+            ),
+            '__construct' => array(
+                'Neos\Flow\Aop\Advice\BeforeAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\BeforeAdvice('Neos\Flow\Persistence\Aspect\PersistenceMagicAspect', 'generateUuid', $objectManager, NULL),
+                ),
+            ),
+        );
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __wakeup()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        $this->Flow_setRelatedEntities();
+            $result = NULL;
+        if (method_exists(get_parent_class(), '__wakeup') && is_callable('parent::__wakeup')) parent::__wakeup();
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __clone()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone'])) {
+            $result = NULL;
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone'] = true;
+            try {
+            
+                $methodArguments = [];
+
+                if (isset($this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__clone']['Neos\Flow\Aop\Advice\BeforeAdvice'])) {
+                    $advices = $this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__clone']['Neos\Flow\Aop\Advice\BeforeAdvice'];
+                    $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'Neos\Party\Domain\Model\Person', '__clone', $methodArguments);
+                    foreach ($advices as $advice) {
+                        $advice->invoke($joinPoint);
+                    }
+
+                    $methodArguments = $joinPoint->getMethodArguments();
+                }
+
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'Neos\Party\Domain\Model\Person', '__clone', $methodArguments);
+                $result = $this->Flow_Aop_Proxy_invokeJoinPoint($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+                if (isset($this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__clone']['Neos\Flow\Aop\Advice\AfterReturningAdvice'])) {
+                    $advices = $this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices['__clone']['Neos\Flow\Aop\Advice\AfterReturningAdvice'];
+                    $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'Neos\Party\Domain\Model\Person', '__clone', $methodArguments, NULL, $result);
+                    foreach ($advices as $advice) {
+                        $advice->invoke($joinPoint);
+                    }
+
+                    $methodArguments = $joinPoint->getMethodArguments();
+                }
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __sleep()
+    {
+            $result = NULL;
+        $this->Flow_Object_PropertiesToSerialize = array();
+
+        $transientProperties = array (
+);
+        $propertyVarTags = array (
+  'name' => 'Neos\\Party\\Domain\\Model\\PersonName',
+  'electronicAddresses' => 'Doctrine\\Common\\Collections\\Collection<\\Neos\\Party\\Domain\\Model\\ElectronicAddress>',
+  'primaryElectronicAddress' => 'Neos\\Party\\Domain\\Model\\ElectronicAddress',
+  'accounts' => 'Doctrine\\Common\\Collections\\Collection<\\Neos\\Flow\\Security\\Account>',
+  'Persistence_Object_Identifier' => 'string',
+);
+        $result = $this->Flow_serializeRelatedEntities($transientProperties, $propertyVarTags);
+        return $result;
+    }
+}
+# PathAndFilename: /var/www/html/neos/Packages/Application/Neos.Party/Classes/Domain/Model/Person.php
+#

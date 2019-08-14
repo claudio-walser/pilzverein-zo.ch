@@ -1,0 +1,6 @@
+return function(\Neos\Flow\Aop\JoinPointInterface $joinPoint, $objectManager) {
+    $currentObject = $joinPoint->getProxy();
+    $globalObjectNames = $objectManager->getSettingsByPath(array('Neos', 'Flow', 'aop', 'globalObjects'));
+    $globalObjects = array_map(function($objectName) use ($objectManager) { return $objectManager->get($objectName); }, $globalObjectNames);
+    return (\Neos\Utility\ObjectAccess::getPropertyPath($currentObject, 'workspace.owner') !== \Neos\Utility\ObjectAccess::getPropertyPath($globalObjects['userInformation'], 'backendUser') && \Neos\Utility\ObjectAccess::getPropertyPath($currentObject, 'workspace.personalWorkspace') === true);
+};

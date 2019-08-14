@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('String')->callAndWrap('toString', array($context->getAndWrap('request')->getAndWrap('httpRequest')->getAndWrap('baseUri')));};

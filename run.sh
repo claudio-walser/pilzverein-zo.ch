@@ -6,14 +6,14 @@ docker rm -f neos-db;
 docker run -itd \
     -p 3306:3306 \
     -e MYSQL_ROOT_PASSWORD=my-secret-pw \
-    -v $(pwd)/docker/data/mysql:/var/lib/mysql \
+    -v $(pwd)/docker/data/mysql:/var/lib/mysql:cached \
     --name neos-db \
     mysql:5.7;
 
 docker run -itd \
     -p 80:80 \
     -e DOCUMENT_ROOT=/var/www/html/neos/Web \
-    -v $(pwd)/docker/data/app:/var/www/html/neos \
+    -v $(pwd)/docker/data/app:/var/www/html/neos:cached \
     --name neos-test \
     --link neos-db:neos-db \
     neos-test:latest;

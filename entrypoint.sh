@@ -5,4 +5,8 @@ if [ `ls -A /var/www/html/neos/ | wc -m` == "0" ]; then
     mv /var/www/html/neos-orig/* /var/www/html/neos/;
 fi
 
+echo "Starting apache"
 /usr/sbin/apache2ctl -DFOREGROUND
+
+echo "Executing passed command"
+exec "$@"

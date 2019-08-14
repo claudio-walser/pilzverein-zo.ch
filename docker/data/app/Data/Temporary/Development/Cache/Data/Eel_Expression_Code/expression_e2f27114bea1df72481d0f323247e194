@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('documentNode')->getAndWrap('context')->getAndWrap('currentRenderingMode')->getAndWrap('fusionPath');};

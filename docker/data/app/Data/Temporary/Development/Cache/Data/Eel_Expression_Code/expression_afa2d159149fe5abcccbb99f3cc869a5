@@ -1,0 +1,1 @@
+return function ($context) {return $context->getAndWrap('Neos')->getAndWrap('Ui')->getAndWrap('Api')->callAndWrap('emptyArrayToObject', array($context->getAndWrap('Neos')->getAndWrap('Ui')->getAndWrap('ContentDimensions')->callAndWrap('allowedPresetsByName', array($context->getAndWrap('documentNode')->getAndWrap('context')->getAndWrap('dimensions')))));};
