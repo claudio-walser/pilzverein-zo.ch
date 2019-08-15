@@ -1,7 +1,0 @@
-type: dictionary
-additionalProperties: false
-properties:
-  'registerFunctionalTestClasses': { type: boolean, required: true }
-  'includeClasses':
-    type: array
-    items: { type: string, required: true }

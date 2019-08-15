@@ -1,1 +1,0 @@
-return function ($context) {return $context->getAndWrap('Neos')->getAndWrap('Caching')->callAndWrap('nodeTag', array($context->callAndWrap('q', array($context->getAndWrap('documentNode')))->callAndWrap('parents', array())));};
