@@ -1,0 +1,29 @@
+version: '3.2'
+services:
+  neos-db:
+    container_name: neos-db
+    image: mysql:5.7
+    volumes:
+       - ./docker/data/mysql:/var/lib/mysql:cached
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+  neos-test:
+    container_name: neos-test
+    image: neos-test:latest
+    volumes:
+      - neos-app-sync:/var/www/html/neos:nocopy
+    environment:
+      - DOCUMENT_ROOT=/var/www/html/neos/Web
+    working_dir: /var/www/html/neos
+    ports:
+      - "80:80"
+    links:
+      - neos-db:neos-db
+
+volumes:
+  neos-db:
+    driver: local
+  neos-app-sync:
+    external: true

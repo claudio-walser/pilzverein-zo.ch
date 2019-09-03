@@ -1,0 +1,23 @@
+version: '2'
+syncs:
+  neos-app-sync:
+    src: './docker/data/app'
+    # sync_excludes:
+    #   - '.idea'
+    #   - '.git'
+    #   - 'docker/*'
+    #   - 'app/cache/*'
+    #   - 'app/logs/*'
+    #   - 'ezpublish_legacy/var/cache/*'
+    #   - 'ezpublish_legacy/var/log/*'
+    #   - 'ezpublish_legacy/var/storage/images/*'
+    #   - 'ezpublish_legacy/var/storage/imageCache/*'
+    #   - 'ezpublish_legacy/var/storage/images-versioned/*'
+    #   - 'ezpublish_legacy/var/storage/ymclockmanager/*'
+    #   - 'ezpublish_legacy/var/storage/ymcpersistentcache/*'
+    #   - 'web/var/*'
+    #   - 'web/extension/*'
+    #   - 'node_modules/*'
+    #   - 'src/SRF/CMSSiteBundle/ezpublish_legacy/ezfind/java/solr/ezp-default/data/*'
+    sync_userid: '1000'
+    watch_args: '-v'
