@@ -14,8 +14,8 @@ RUN set -x \
     && a2enmod rewrite;
 
 RUN set -x \
-    && git clone https://github.com/claudio-walser/neos-base-distribution.git /var/www/html/neos-orig \
-    && cd /var/www/html/neos-orig && composer install \
+    && git clone https://github.com/claudio-walser/neos-base-distribution.git /var/www/html/neos \
+    && cd /var/www/html/neos && composer install \
 	&& chown -R www-data: /var/www;
 
 #COPY php.ini /etc/php/${PHP_VERSION}/apache2/php.ini
