@@ -18,7 +18,8 @@ RUN set -x \
     && cd /var/www/html/neos && composer install \
 	&& chown -R www-data: /var/www;
 
-#COPY php.ini /etc/php/${PHP_VERSION}/apache2/php.ini
+COPY php.ini /etc/php/${PHP_VERSION}/apache2/php.ini
+COPY php.ini /etc/php/${PHP_VERSION}/cli/php.ini
 
 EXPOSE 80
 EXPOSE 443
