@@ -1,6 +1,8 @@
 FROM debian:buster-slim
 ARG PHP_VERSION="7.3"
 
+ENV FLOW_CONTEXT Production
+
 COPY entrypoint.sh /entrypoint.sh
 
 RUN set -x \
